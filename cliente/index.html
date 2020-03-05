@@ -1,0 +1,39 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <script src="/socket.io/socket.io.js"></script>
+    <script src="main.js"></script> -->
+</head>
+<body>
+    <form action="">
+          <input id="m" autocomplete="off" /><button>Send</button>
+    </form>
+    <ul id="messages"></ul>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+    <script>
+
+var socket = io.connect();
+
+        
+//         $('form').submit(function(){
+//             //$('#messages').append($('<li>').text($('#m').val()));
+//             socket.emit('sending', $('#m').val());
+//             $('#m').val('');
+//             return false;
+//           });
+        
+       
+//    socket.on('recieve', function(msg){
+//           $('#messages').append($('<li>').text(msg));
+//        });
+        
+    </script>
+</body>
+</html>
