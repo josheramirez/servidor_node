@@ -24,18 +24,38 @@ server.listen(port, (error) => {
 
 //  configurar el socket io 
 
-io.on('connection',function(socket){
-    console.log("New Connection");
+var users=[];
 
-    io.sockets.emit('msj_to_all',"New player in the server");
+io.on('connection',function(socket){
+    console.log("Nuevo Usuario conectado: "+socket.id);
+
+    io.sockets.emit('msj_to_all',"server dice: New player in the server");
     //envio mensaje a cliente conectado
     socket.on('msj_client_to_server',(data)=>{
-        console.log(data);
-        io.emit('msj_server_to_client',"mensaje recibido por el server");
+        console.log("mesaje enviado por usuario: "+ JSON.stringify(data));
+    
+
+        //mensaje solo para mi
+        socket.emit('msj_server_to_client',"has conectado con el servidor");
+
+        //mensaje para todos
+        // io.sockets.emit('msj_to_all',"nuevo jugador conectado");
+
+        //mensaje para todos menos yo
+        socket.broadcast.emit('msj_to_all',"nuevo jugador conectado "+socket.id);
+
     });
+    socket.on('msj_client_to_client', (data)=>{
+        
+        data.emiter=socket.id;
+        console.log("mesaje enviado por server: "+JSON.stringify(data));
+        
+        socket.broadcast.to(data.reciver).emit('private', 'recivi mensaje privado');
+      });
+
 });
 
-
+// aIzR94bcRCfKAikIAAAH
 
 
 // // Use Node.js body parsing middleware

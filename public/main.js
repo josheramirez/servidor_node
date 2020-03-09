@@ -15,3 +15,7 @@ socket.emit('msj_client_to_server',"primer mensaje");
 socket.on('msj_server_to_client',function(data){
     console.log(data);
 })
+// // recivir mensajes
+socket.on('private',function(data){
+    console.log(data);
+})
